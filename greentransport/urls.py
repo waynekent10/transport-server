@@ -20,10 +20,12 @@ from rest_framework import routers
 from greentransportapi.views.auth import check_user, register_user
 from greentransportapi.views.scooters import ScooterView
 from greentransportapi.views.maintenance import MaintenanceView
+from greentransportapi.views.part import PartView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'scooters', ScooterView, 'scooter')
 router.register(r'maintenance', MaintenanceView, 'maintenance')
+router.register(r'part', PartView, 'part')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
