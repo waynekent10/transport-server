@@ -32,8 +32,8 @@ class Migration(migrations.Migration):
             name='Maintenance_part',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('Maintenance_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='greentransportapi.maintenance')),
-                ('part_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='greentransportapi.part')),
+                ('maintenance', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='greentransportapi.maintenance')),
+                ('part', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='greentransportapi.part')),
             ],
         ),
     ]
