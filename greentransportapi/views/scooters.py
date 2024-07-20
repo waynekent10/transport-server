@@ -18,8 +18,5 @@ class ScooterView(ViewSet):
 
     def list(self, request):
       scooter = Scooter.objects.all()
-      Scooter = request.query_params.get('Scooter', None)
-      if Scooter is not None:
-            scooter = scooter.filter(Scooter_id=Scooter)
       serializer = ScooterSerializer(scooter, many=True)
       return Response(serializer.data, status=status.HTTP_200_OK)
