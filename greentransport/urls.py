@@ -14,16 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.db import router
-from django.urls import path
-from django.conf.urls import include
+from django.urls import path, include
 from rest_framework import routers
 
 from greentransportapi.views.auth import check_user, register_user
+from greentransportapi.views.scooters import ScooterView
+from greentransportapi.views.maintenance import MaintenanceView
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register(r'scooters', 'greentransportapi.views.scooters', 'scooter')
-router.register(r'maintenance', 'greentransportapi.views.maintenance', 'maintenance')
+router.register(r'scooters', ScooterView, 'scooter')
+router.register(r'maintenance', MaintenanceView, 'maintenance')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
