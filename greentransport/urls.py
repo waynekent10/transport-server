@@ -19,6 +19,8 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 
+from greentransportapi.views.auth import check_user, register_user
+
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'scooters', 'greentransportapi.views.scooters', 'scooter')
 router.register(r'maintenance', 'greentransportapi.views.maintenance', 'maintenance')
@@ -26,4 +28,6 @@ router.register(r'maintenance', 'greentransportapi.views.maintenance', 'maintena
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
+    path('register', register_user),
+    path('checkuser', check_user),
 ]
