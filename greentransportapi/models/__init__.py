@@ -1,4 +1,5 @@
 from .ride import Ride
-from .user_scooter import UserScooter
 from .scooter import Scooter
 from .user import User
+from .membership_plan import MembershipPlan
+from .user_membership import UserMembership

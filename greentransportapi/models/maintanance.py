@@ -1,7 +1,7 @@
 from django.db import models
-from .user import User
 from .scooter import Scooter
 
-class UserScooter(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class Maintenance(models.Model):
     scooter = models.ForeignKey(Scooter, on_delete=models.CASCADE)
+    maintenance_date = models.DateTimeField()
+    description = models.TextField()
