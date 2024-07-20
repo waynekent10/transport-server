@@ -1,5 +1,5 @@
 from django.db import models
-from .maintanance import Maintenance
+from .maintenance import Maintenance
 from .part import Part
 
 class Maintenance_part(models.Model):
