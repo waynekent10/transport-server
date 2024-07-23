@@ -22,7 +22,7 @@ from greentransportapi.views.scooters import ScooterView
 from greentransportapi.views.maintenance import MaintenanceView
 from greentransportapi.views.part import PartView
 from greentransportapi.views.maintenancepart import MaintenancePartView
-from greentransportapi.views.ride import RideView # type: ignore
+from greentransportapi.views.ride_view import RideView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'scooters', ScooterView, 'scooter')
