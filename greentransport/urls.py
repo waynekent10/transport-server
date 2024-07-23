@@ -22,12 +22,14 @@ from greentransportapi.views.scooters import ScooterView
 from greentransportapi.views.maintenance import MaintenanceView
 from greentransportapi.views.part import PartView
 from greentransportapi.views.maintenancepart import MaintenancePartView
+from greentransportapi.views.ride_view import RideView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'scooters', ScooterView, 'scooter')
 router.register(r'maintenance', MaintenanceView, 'maintenance')
 router.register(r'part', PartView, 'part')
 router.register(r'maintenancepart', MaintenancePartView, 'maintenancepart')
+router.register(r'ride', RideView, 'ride')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
