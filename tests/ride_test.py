@@ -48,13 +48,16 @@ class RideViewTests(APITestCase):
         self.assertEqual(response.data['duration'], self.ride.duration)
 
     def test_update_ride(self):
-      """Test updating an existing ride"""
-      data = {
-          "cost": 15
-      }
-      response = self.client.put(f'/rides/{self.ride.id}/', data, format='json')
-      self.assertEqual(response.status_code, status.HTTP_200_OK)
-      self.assertEqual(response.data['cost'], 15)
+        url = reverse('ride-detail', args=[self.ride.id])
+        data = {
+            'start_time': "2024-07-30T14:00:00Z",
+            'end_time': "2024-07-30T15:00:00Z"
+        }
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.ride.refresh_from_db()
+        self.assertEqual(self.ride.start_time, data['start_time'])
+        self.assertEqual(self.ride.end_time, data['end_time'])
 
 
     def test_update_ride(self):
