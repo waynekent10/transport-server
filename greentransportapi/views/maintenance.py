@@ -11,7 +11,7 @@ class MaintenanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Maintenance
         fields = ('id', 'scooter', 'maintenance_date', 'description')
-        depth = 1
+        depth = 2
 
 class MaintenanceView(ViewSet):
     def retrieve(self, request, pk):
@@ -28,27 +28,22 @@ class MaintenanceView(ViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request):
-        try:
-            scooter = Scooter.objects.get(pk=request.data['scooter'])
-            maintenance_date = request.data.get('maintenance_date')
-            description = request.data['description']
+
+            scooter = Scooter.objects.get(pk=request.data['scooter_id'])
 
             maintenance = Maintenance.objects.create(
-                scooter=scooter,
-                maintenance_date=maintenance_date,
-                description=description
+            scooter=scooter,
+            maintenance_date = request.data['maintenance_date'],
+            description = request.data['description']
             )
-            serializer = MaintenanceSerializer(maintenance, context={'request': request})
+            serializer = MaintenanceSerializer(maintenance)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        except Scooter.DoesNotExist:
-            return Response({'error': 'Invalid scooter'}, status=status.HTTP_400_BAD_REQUEST)
-        except KeyError:
-            return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
+
 
     def update(self, request, pk):
         try:
             maintenance = Maintenance.objects.get(pk=pk)
-            maintenance.scooter = Scooter.objects.get(pk=request.data['scooter'])
+            maintenance.scooter = Scooter.objects.get(pk=request.data['scooter_id'])
             maintenance.maintenance_date = request.data['maintenance_date']
             maintenance.description = request.data['description']
             maintenance.save()
@@ -62,9 +57,6 @@ class MaintenanceView(ViewSet):
             return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk):
-        try:
             maintenance = Maintenance.objects.get(pk=pk)
             maintenance.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        except Maintenance.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
