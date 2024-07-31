@@ -2,7 +2,6 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-
 from greentransportapi.models import Scooter
 
 class ScooterSerializer(serializers.ModelSerializer):
@@ -39,4 +38,3 @@ class ScooterView(ViewSet):
             return Response({'error': 'Invalid part'}, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
             return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
-      

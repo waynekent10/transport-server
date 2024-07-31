@@ -36,19 +36,33 @@ class RideView(ViewSet):
         serializer = RideSerializer(ride)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def update(self, request, pk):
-        """Handle PUT/PATCH requests to update a ride"""
+    def put(self, request, pk):
+        """Handle PUT requests to update a ride"""
         try:
+            # Fetch the ride to be updated
             ride = Ride.objects.get(pk=pk)
-            ride.user = User.objects.get(id=request.data["user"])
-            ride.scooter = Scooter.objects.get(id=request.data["scooter"])
-            ride.duration = request.data.get("duration", ride.duration)
-            ride.cost = request.data.get("cost", ride.cost)
+            
+            # Update ride with provided data
+            ride.user = User.objects.get(pk=request.data['user'])
+            ride.scooter = Scooter.objects.get(pk=request.data['scooter'])
+            ride.duration = request.data['duration']
+            ride.cost = request.data['cost']
             ride.save()
-            serializer = RideSerializer(ride)
-            return Response(serializer.data)
+            
+            # Return no content response
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
         except Ride.DoesNotExist:
-            return Response({'message': 'Ride not found'}, status=status.HTTP_404_NOT_FOUND)
+            # Ride not found
+            return Response({'error': 'Ride not found'}, status=status.HTTP_404_NOT_FOUND)
+        except User.DoesNotExist:
+            # User reference is invalid
+            return Response({'error': 'Invalid user'}, status=status.HTTP_400_BAD_REQUEST)
+        except Scooter.DoesNotExist:
+            # Scooter reference is invalid
+            return Response({'error': 'Invalid scooter'}, status=status.HTTP_400_BAD_REQUEST)
+        except KeyError as e:
+            # Handle missing required fields
+            return Response({'error': f'Missing required field: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk):
         """Handle DELETE requests to delete a ride"""
@@ -63,4 +77,4 @@ class RideSerializer(serializers.ModelSerializer):
     """JSON serializer for post instances"""
     class Meta:
         model = Ride
-        fields = ('id', 'user', 'scooter', 'duration')
+        fields = ('id', 'user', 'scooter', 'duration', 'cost')
