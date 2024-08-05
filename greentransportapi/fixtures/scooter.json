@@ -1,0 +1,23 @@
+[
+  {
+    "model": "greentransportapi.scooter",
+    "pk": 1,
+    "fields": {
+      "name": 1001
+    }
+  },
+  {
+    "model": "greentransportapi.scooter",
+    "pk": 2,
+    "fields": {
+      "name": 1002
+    }
+  },
+  {
+    "model": "greentransportapi.scooter",
+    "pk": 3,
+    "fields": {
+      "name": 1003
+    }
+  }
+]

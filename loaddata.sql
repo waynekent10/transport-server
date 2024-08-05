@@ -11,6 +11,14 @@ CREATE TABLE "Users" (
   "active" bit
 );
 
+CREATE TABLE "User" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "name" varchar,
+  "email" varchar,
+  "username" varchar,
+  "uid" varchar,
+);
+
 CREATE TABLE "DemotionQueue" (
   "action" varchar,
   "admin_id" INTEGER,

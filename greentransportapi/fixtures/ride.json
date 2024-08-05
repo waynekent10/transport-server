@@ -1,0 +1,32 @@
+[
+  {
+    "model": "greentransportapi.ride",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "scooter": 1,
+      "duration": 30,
+      "cost": 5
+    }
+  },
+  {
+    "model": "greentransportapi.ride",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "scooter": 2,
+      "duration": 45,
+      "cost": 7
+    }
+  },
+  {
+    "model": "greentransportapi.ride",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "scooter": 3,
+      "duration": 60,
+      "cost": 10
+    }
+  }
+]
