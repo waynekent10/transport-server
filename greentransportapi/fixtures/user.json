@@ -1,0 +1,12 @@
+[
+  {
+    "model": "greentransportapi.user",
+    "pk": 1,
+    "fields": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "username": "johndoe",
+      "uid": "uid12345"
+    }
+  }
+]

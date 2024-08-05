@@ -1,0 +1,26 @@
+[
+  {
+    "model": "greentransportapi.membershipplan",
+    "pk": 1,
+    "fields": {
+      "plan_name": "Basic Plan",
+      "monthly_cost": 20
+    }
+  },
+  {
+    "model": "greentransportapi.membershipplan",
+    "pk": 2,
+    "fields": {
+      "plan_name": "Standard Plan",
+      "monthly_cost": 30
+    }
+  },
+  {
+    "model": "greentransportapi.membershipplan",
+    "pk": 3,
+    "fields": {
+      "plan_name": "Premium Plan",
+      "monthly_cost": 40
+    }
+  }
+]

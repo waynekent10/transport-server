@@ -1,0 +1,26 @@
+[
+  {
+    "model": "greentransportapi.part",
+    "pk": 1,
+    "fields": {
+      "part_name": "Tire",
+      "part_number": 12345
+    }
+  },
+  {
+    "model": "greentransportapi.part",
+    "pk": 2,
+    "fields": {
+      "part_name": "Battery",
+      "part_number": 67890
+    }
+  },
+  {
+    "model": "greentransportapi.part",
+    "pk": 3,
+    "fields": {
+      "part_name": "Brake Pad",
+      "part_number": 11223
+    }
+  }
+]

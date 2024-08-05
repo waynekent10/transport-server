@@ -1,0 +1,26 @@
+[
+  {
+    "model": "greentransportapi.maintenance_part",
+    "pk": 1,
+    "fields": {
+      "maintenance": 1,
+      "part": 1
+    }
+  },
+  {
+    "model": "greentransportapi.maintenance_part",
+    "pk": 2,
+    "fields": {
+      "maintenance": 2,
+      "part": 2
+    }
+  },
+  {
+    "model": "greentransportapi.maintenance_part",
+    "pk": 3,
+    "fields": {
+      "maintenance": 3,
+      "part": 3
+    }
+  }
+]
