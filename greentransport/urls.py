@@ -21,7 +21,7 @@ from greentransportapi.views.auth import check_user, register_user
 from greentransportapi.views.scooters import ScooterView
 from greentransportapi.views.maintenance import MaintenanceView
 from greentransportapi.views.part import PartView
-from greentransportapi.views.maintenancepart import MaintenancePartView
+from greentransportapi.views.maintenance_part import MaintenancePartView
 from greentransportapi.views.ride_view import RideView
 from greentransportapi.views.user_view import UserView
 

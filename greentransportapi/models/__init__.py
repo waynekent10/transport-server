@@ -5,4 +5,4 @@ from .membership_plan import MembershipPlan
 from .user_membership import UserMembership
 from .maintenance import Maintenance
 from .part import Part
-from .maintenancepart import MaintenancePart
+from .maintenance_part import MaintenancePart
