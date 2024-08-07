@@ -74,7 +74,8 @@ class RideView(ViewSet):
             return Response({'message': 'Ride not found'}, status=status.HTTP_404_NOT_FOUND)
 
 class RideSerializer(serializers.ModelSerializer):
-    """JSON serializer for post instances"""
+    """JSON serializer for ride instances"""
     class Meta:
         model = Ride
-        fields = ('id', 'user', 'scooter', 'duration', 'cost')
+        fields = ('id', 'user', 'scooter', 'duration', 'cost', 'created_on')
+        read_only_fields = ('created_on',)
