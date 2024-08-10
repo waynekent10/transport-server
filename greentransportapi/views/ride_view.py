@@ -14,12 +14,18 @@ class RideView(ViewSet):
             return Response(serializer.data)
         except Ride.DoesNotExist:
             return Response({'message': 'Ride not found'}, status=status.HTTP_404_NOT_FOUND)
-
+    
     def list(self, request):
-        """Handle GET requests for all rides"""
-        rides = Ride.objects.all()
+        """Handle GET requests for all rides or filter by user"""
+        user_id = request.query_params.get('user', None)
+        if user_id is not None:
+            rides = Ride.objects.filter(user_id=user_id)
+        else:
+            rides = Ride.objects.all()
+        
         serializer = RideSerializer(rides, many=True)
         return Response(serializer.data)
+
 
     def create(self, request):
         """Handle POST operations"""
@@ -74,8 +80,18 @@ class RideView(ViewSet):
             return Response({'message': 'Ride not found'}, status=status.HTTP_404_NOT_FOUND)
 
 class RideSerializer(serializers.ModelSerializer):
-    """JSON serializer for ride instances"""
     class Meta:
         model = Ride
         fields = ('id', 'user', 'scooter', 'duration', 'cost', 'created_on')
         read_only_fields = ('created_on',)
+        depth = 2
+        
+class UserSerializer(serializers.ModelSerializer):
+    rides = RideSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ['name', 'email', 'username', 'uid', 'id', 'rides']
+        depth = 2
+
+        
