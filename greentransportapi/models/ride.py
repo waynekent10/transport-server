@@ -6,7 +6,7 @@ class Ride(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     scooter = models.ForeignKey(Scooter, on_delete=models.CASCADE)
     duration = models.IntegerField()
-    cost = models.IntegerField()
+    cost = models.DecimalField(max_digits=10, decimal_places=2)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
