@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from greentransportapi.models import User
+from greentransportapi.models import User, Ride
 
 class UserView(ViewSet):
     def retrieve(self, request, pk):
@@ -53,8 +53,17 @@ class UserView(ViewSet):
         except User.DoesNotExist:
             return Response({'message': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
+class RideSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ride
+        fields = ('id', 'user', 'scooter', 'duration', 'cost', 'created_on')
+        read_only_fields = ('created_on',)
+        depth = 2
+
 class UserSerializer(serializers.ModelSerializer):
+    rides = RideSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ['name', 'email', 'username', 'uid', 'id']
+        fields = ['name', 'email', 'username', 'uid', 'id', 'rides']
         depth = 2
